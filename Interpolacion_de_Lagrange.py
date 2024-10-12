@@ -1,5 +1,45 @@
 import os
+from sympy import *
 
+def interpolacion():
+    x = symbols('x')
+    try:
+        string_expression = input("Ingresa la expresion: ")
+        expression = sympify(string_expression)
+    except Exception as e:
+        print("Error al analizar la expresion: ", e)
+
+    while True:
+        try:
+            y = float(input("Ingresa el valor de x a evaluar: "))
+        except ValueError:
+            print("Error al ingresar el valor de x")
+            continue
+        break
+    
+    while True:
+        try:
+            x0 = float(input("Ingresa el valor de x1: "))
+        except ValueError:
+            print("Error al ingresar el valor de x1")
+            continue
+        break
+
+    while True:
+        try:
+            x1 = float(input("Ingresa el valor de x2: "))
+        except ValueError:
+            print("Error al ingresar el valor de x2")
+            continue
+        break
+
+    fx0 = expression.subs(x, x0)
+    fx1 = expression.subs(x, x1)
+
+    fx = fx0 + ((fx1 - fx0*(y - x0))/(x1 - x0))
+    fx_rounded = round(fx, 3)
+
+    print(f"Una buena aproximación es: {fx_rounded}")
 
 def Lagrange():
     pares = {}
@@ -35,6 +75,8 @@ def menu():
 
         if opcion == 1:
             Lagrange()
+        elif opcion == 2:
+            interpolacion()
 
         resp = input("¿Reiniciar? (S/N): ")
         if resp in ('N', 'n'):
