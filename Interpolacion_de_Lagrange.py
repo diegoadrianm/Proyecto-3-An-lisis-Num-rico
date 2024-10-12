@@ -70,6 +70,7 @@ def menu():
     while flag:
         os.system('cls')
         print("1.- Interpolación de Lagrange")
+        print("2.- Interpolación lineal")
         print("7.- Salir")
         opcion = int(input("Ingrese la opción deseada "))
 
